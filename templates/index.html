@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption Predictor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+</head>
+<body>
+    <div class="header">
+        <h1>Energy Consumption Predictor</h1>
+        <p>This site helps engineers predict energy consumption based on various parameters.</p>
+    </div>
+    <div class="instruction-container">
+        <p>To predict energy consumption <span class="arrow">→</span></p>
+        <button onclick="toggleForm()">Click Here</button>
+    </div>
+    <div class="form-container" id="formContainer">
+        <h2>PLEASE FILL OUT THE FORM ACCURATELY</h2>
+        <form id="energyForm">
+            <label for="Lighting">Lighting:</label>
+            <input type="number" id="Lighting" name="Lighting" required>
+
+            <label for="Kitchen_temp">Kitchen Temperature:</label>
+            <input type="number" id="Kitchen_temp" name="Kitchen_temp" required>
+
+            <label for="Kitchen_Humidity">Kitchen Humidity:</label>
+            <input type="number" id="Kitchen_Humidity" name="Kitchen_Humidity" required>
+
+            <label for="Livingroom_temp">Livingroom Temperature:</label>
+            <input type="number" id="Livingroom_temp" name="Livingroom_temp" required>
+
+            <label for="Livingroom_Humidity">Livingroom Humidity:</label>
+            <input type="number" id="Livingroom_Humidity" name="Livingroom_Humidity" required>
+
+            <label for="Laundryroom_temp">Laundryroom Temperature:</label>
+            <input type="number" id="Laundryroom_temp" name="Laundryroom_temp" required>
+
+            <label for="Laundryroom_Humidity">Laundryroom Humidity:</label>
+            <input type="number" id="Laundryroom_Humidity" name="Laundryroom_Humidity" required>
+
+            <label for="Officeroom_temp">Officeroom Temperature:</label>
+            <input type="number" id="Officeroom_temp" name="Officeroom_temp" required>
+
+            <label for="Officeroom_Humidity">Officeroom Humidity:</label>
+            <input type="number" id="Officeroom_Humidity" name="Officeroom_Humidity" required>
+
+            <label for="Bathroom_temp">Bathroom Temperature:</label>
+            <input type="number" id="Bathroom_temp" name="Bathroom_temp" required>
+
+            <label for="Bathroom_Humidity">Bathroom Humidity:</label>
+            <input type="number" id="Bathroom_Humidity" name="Bathroom_Humidity" required>
+
+            <label for="Corridor_temp">Corridor Temperature:</label>
+            <input type="number" id="Corridor_temp" name="Corridor_temp" required>
+
+            <label for="Corridor_Humidity">Corridor Humidity:</label>
+            <input type="number" id="Corridor_Humidity" name="Corridor_Humidity" required>
+
+            <label for="Ironingroom_temp">Ironingroom Temperature:</label>
+            <input type="number" id="Ironingroom_temp" name="Ironingroom_temp" required>
+
+            <label for="Ironingroom_Humidity">Ironingroom Humidity:</label>
+            <input type="number" id="Ironingroom_Humidity" name="Ironingroom_Humidity" required>
+
+            <label for="Childrenroom_temp">Childrenroom Temperature:</label>
+            <input type="number" id="Childrenroom_temp" name="Childrenroom_temp" required>
+
+            <label for="Childrenroom_Humidity">Childrenroom Humidity:</label>
+            <input type="number" id="Childrenroom_Humidity" name="Childrenroom_Humidity" required>
+
+            <label for="Parentroom_temp">Parentroom Temperature:</label>
+            <input type="number" id="Parentroom_temp" name="Parentroom_temp" required>
+
+            <label for="Parentroom_Humidity">Parentroom Humidity:</label>
+            <input type="number" id="Parentroom_Humidity" name="Parentroom_Humidity" required>
+
+            <label for="Weatherstation_temp">Weatherstation Temperature:</label>
+            <input type="number" id="Weatherstation_temp" name="Weatherstation_temp" required>
+
+            <label for="Weatherstation_mmhg">Weatherstation mmhg:</label>
+            <input type="number" id="Weatherstation_mmhg" name="Weatherstation_mmhg" required>
+
+            <label for="Weatherstation_Humidity">Weatherstation Humidity:</label>
+            <input type="number" id="Weatherstation_Humidity" name="Weatherstation_Humidity" required>
+
+            <label for="Weatherstation_windspeed">Weatherstation Windspeed:</label>
+            <input type="number" id="Weatherstation_windspeed" name="Weatherstation_windspeed" required>
+
+            <label for="Weatherstation_dewpoint">Weatherstation Dewpoint:</label>
+            <input type="number" id="Weatherstation_dewpoint" name="Weatherstation_dewpoint" required>
+
+            <label for="Time_24hrs">Time (24-hour format):</label>
+            <input type="number" id="Time_24hrs" name="Time_24hrs" min="0" max="23" required>
+
+            <label for="Day_ofthe_week">Day of the week (0-6, 0 is Monday):</label>
+            <input type="number" id="Day_ofthe_week" name="Day_ofthe_week" min="0" max="6" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="result-container" id="resultContainer">
+        <h2>Prediction Result</h2>
+        <div id="predictionResult"></div>
+        <h2>Energy Consumption Trend</h2>
+        <div class="chart-container">
+            <canvas id="energyChart"></canvas>
+        </div>
+        <button onclick="fetchAndUpdateChart()">Refresh Chart</button>
+        <div id="parameterInfo"></div>
+        <button onclick="toggleForm()">Make Another Prediction</button>
+    </div>
+
+    <footer>
+        &copy; 2024 Energy Consumption Predictor. All rights reserved.
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
